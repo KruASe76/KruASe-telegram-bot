@@ -22,7 +22,7 @@ async def help_command(message: Message):
 
 @router.message(Command(commands=["santa"]))
 async def santa_command(message: Message):
-    if message.from_user.id not in conf.santa_participants.keys():
+    if (id := message.from_user.id) not in conf.santa_participants.keys() and id not in conf.santa_map.keys():
         await message.reply("Не для таких жалких людей, как ты, была создана эта команда\!")
         return
 
