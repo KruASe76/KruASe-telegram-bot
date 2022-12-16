@@ -5,7 +5,7 @@ from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
 admin_id = 737286150
 
-makedirs("cache")
+makedirs("cache", exist_ok=True)
 config_path = path.join("cache", "config.pickle")
 names_path = path.join("names.txt")
 
