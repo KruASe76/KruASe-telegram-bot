@@ -1,10 +1,11 @@
-from os import path
+from os import path, makedirs
 
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
 
 admin_id = 737286150
 
+makedirs("cache")
 config_path = path.join("cache", "config.pickle")
 names_path = path.join("names.txt")
 
