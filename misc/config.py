@@ -15,10 +15,10 @@ class Config:
 
 if path.exists(config_path):
     with open(config_path, "rb") as config_file:
-        config = pickle.load(config_file)
+        conf = pickle.load(config_file)
 else:
     with open(participants_path, "r", encoding="utf-8") as participants_file:
-        config = Config(
+        conf = Config(
             santa_participants=yaml.load(participants_file, yaml.FullLoader),
             santa_map={}
         )
@@ -26,4 +26,4 @@ else:
 
 def save_config():
     with open(config_path, "wb") as config_file:
-        pickle.dump(config, config_file)
+        pickle.dump(conf, config_file)
