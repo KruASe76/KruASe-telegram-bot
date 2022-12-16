@@ -3,10 +3,11 @@ import random
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
+from aiogram.exceptions import TelegramForbiddenError
 
 from main import bot
 from misc.config import conf
-from misc.constants import lucky_suffix
+from misc.constants import not_started_keyboard, lucky_suffix
 
 
 router = Router()
@@ -21,8 +22,15 @@ async def help_command(message: Message):
 
 @router.message(Command(commands=["santa"]))
 async def santa_command(message: Message):
+    if message.from_user.id not in conf.santa_participants.keys():
+        await message.reply("Не для таких жалких людей, как ты, была создана эта команда\!")
+        return
+
     if (id := message.from_user.id) in conf.santa_map.keys():
-        await bot.send_message(id, f"Тебе уже предоставлен подопечный\!\nА именно *{conf.santa_map[id]}*")
+        try:
+            await bot.send_message(id, f"Тебе уже предоставлен подопечный\!\nА именно *{conf.santa_map[id]}*")
+        except TelegramForbiddenError:
+            await message.reply("Сначала запусти бота\!\nТаковы правила Телеграма", reply_markup=not_started_keyboard)
         return
 
     if not conf.santa_participants:

@@ -8,6 +8,19 @@ config_path = path.join("cache", "config.pickle")
 participants_path = path.join("participants.yml")
 
 
+not_started_keyboard = InlineKeyboardMarkup(
+    row_width=1,
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="Бот",
+                url="https://t.me/KruASe_bot"
+            )
+        ]
+    ]
+)
+
+
 lucky_suffix = "\n\n_Повезло повезло\.\.\._"
 
 
