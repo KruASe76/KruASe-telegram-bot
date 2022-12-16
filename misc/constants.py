@@ -1,9 +1,8 @@
-from os import path, makedirs
+from os import path
 
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-makedirs("../cache", exist_ok=True)
 config_path = path.join("cache", "config.pickle")
 participants_path = path.join("participants.yml")
 

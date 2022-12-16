@@ -15,6 +15,8 @@ logging.basicConfig(level=logging.INFO)
 
 
 async def main():
+    os.makedirs("cache", exist_ok=True)
+
     dp.include_router(user.router)
     dp.include_router(admin.router)
 
