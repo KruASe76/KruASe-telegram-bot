@@ -17,7 +17,7 @@ async def admin_panel_command(message: Message):
 
 @router.callback_query(Text(text="santa_progress"))
 async def shutdown_query(callback: CallbackQuery):
-    await callback.answer(f"{len(conf.santa_map)}/{len(conf.santa_participants) + len(conf.santa_map)}")
+    await callback.answer(f"{len(conf.santa_map)}/{len(conf.santa_participants)}")
 
 @router.callback_query(Text(text="shutdown"))
 async def shutdown_query(callback: CallbackQuery):
