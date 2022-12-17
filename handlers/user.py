@@ -44,9 +44,12 @@ async def santa_command(message: Message):
     conf.santa_participants.pop(recipient_id)
     conf.santa_map[message.from_user.id] = recipient_name
 
-    await bot.send_message(
-        message.from_user.id,
-        f"__Запрос {len(conf.santa_map)}/{len(conf.santa_participants) + len(conf.santa_map)}__\n\n"
-        f"Тебе достается\.\.\.\n*{recipient_name}*\!"
-        f"{lucky_suffix if recipient_name == 'Борис Игоревич' else ''}"
-    )
+    try:
+        await bot.send_message(
+            message.from_user.id,
+            f"__Запрос {len(conf.santa_map)}/{len(conf.santa_participants) + len(conf.santa_map)}__\n\n"
+            f"Тебе достается\.\.\.\n*{recipient_name}*\!"
+            f"{lucky_suffix if recipient_name == 'Борис Игоревич' else ''}"
+        )
+    except TelegramForbiddenError:
+        await message.reply("Сначала запусти бота\!\nТаковы правила Телеграма", reply_markup=not_started_keyboard)
