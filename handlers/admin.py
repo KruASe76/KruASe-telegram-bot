@@ -2,7 +2,7 @@ from aiogram import Router
 from aiogram.filters import Command, Text
 from aiogram.types import Message, CallbackQuery
 
-from handlers.filters import BotAdminFilter
+from handlers.filters import BotAdminMessageFilter, BotAdminCallbackFilter
 from misc.config import conf, save_config
 from misc.constants import admin_inline_keyboard
 
@@ -10,12 +10,12 @@ from misc.constants import admin_inline_keyboard
 router = Router()
 
 
-@router.message(Command(commands=["god"]), BotAdminFilter())
+@router.message(Command(commands=["god"]), BotAdminMessageFilter())
 async def admin_panel_command(message: Message):
-    await message.answer("Здравствуй, отец\!", reply_markup=admin_inline_keyboard)
+    await message.answer("Здарова, отец\!", reply_markup=admin_inline_keyboard)
 
 
-@router.callback_query(Text(text="santa_progress"))
+@router.callback_query(Text(text="santa_progress"), BotAdminCallbackFilter())
 async def shutdown_query(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer(
@@ -26,7 +26,7 @@ async def shutdown_query(callback: CallbackQuery):
         ))
     )
 
-@router.callback_query(Text(text="shutdown"))
+@router.callback_query(Text(text="shutdown"), BotAdminCallbackFilter())
 async def shutdown_query(callback: CallbackQuery):
     save_config()
 
