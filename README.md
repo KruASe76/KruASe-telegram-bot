@@ -13,5 +13,5 @@ Mechanism that provides random draw for Secret Santa event
 
 ## Used libraries
 
-- [aiogram (v2.x)](https://pypi.org/project/aiogram/) as Telegram Bot API
+- [aiogram (v3.0.0b6)](https://pypi.org/project/aiogram/3.0.0b6/) as Telegram Bot API
 - [PyYAML](https://pypi.org/project/PyYAML/) to process YAML configuration
