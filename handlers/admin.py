@@ -19,7 +19,8 @@ async def admin_panel_command(message: Message):
 async def shutdown_query(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer(
-        f"*{len(conf.santa_map)}/{len(conf.santa_participants)}*\n\n_Ждем\-с_:\n" +
+        f"*{(taken := len(conf.santa_map))}/{(total := len(conf.santa_participants))}*" +
+        ("\n\n_Ждем\-с_:\n" if taken < total else "") +
         "\n".join(map(
             lambda p: p[1],
             filter(lambda p: p[0] not in conf.santa_map.keys(), conf.santa_participants.items())
