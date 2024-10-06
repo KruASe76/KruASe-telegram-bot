@@ -3,12 +3,14 @@ import os
 import logging
 
 from aiogram import Bot, Dispatcher
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums.parse_mode import ParseMode
 
 from handlers import user
 from handlers import admin
 
 
-bot = Bot(token=os.environ.get("TOKEN"), parse_mode="MarkdownV2")
+bot = Bot(token=os.environ.get("TOKEN"), efault=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
 dp = Dispatcher()
 
 logging.basicConfig(level=logging.INFO)

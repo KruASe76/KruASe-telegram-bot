@@ -21,7 +21,7 @@ else:
         conf = Config(
             users=set(),
             santa_participants=yaml.load(participants_file, yaml.FullLoader),
-            santa_map={}
+            santa_map={},
         )
 
 
