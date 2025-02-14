@@ -1,26 +1,25 @@
-from os import path
-
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pathlib import Path
 
 
-config_path = path.join("cache", "config.pickle")
-participants_path = path.join("participants.yml")
-
-
-not_started_keyboard = InlineKeyboardMarkup(
-    row_width=1, inline_keyboard=[[InlineKeyboardButton(text="Бот", url="https://t.me/KruASe_bot")]]
-)
-
-
-lucky_suffix = "\n\n__Повезло повезло...__"
+invisible_separator = "\u2063"
 
 
 admin_id = 737286150
+special_id = 1671274831
 
-admin_inline_keyboard = InlineKeyboardMarkup(
-    row_width=1,
-    inline_keyboard=[
-        [InlineKeyboardButton(text="Прогресс Тайного Санты 🎅", callback_data="santa_progress")],
-        [InlineKeyboardButton(text="Спать! ⛔️", callback_data="shutdown")],
-    ],
-)
+
+digit_to_emoji = {
+    "1": "1️⃣",
+    "2": "2️⃣",
+    "3": "3️⃣",
+    "4": "4️⃣",
+    "5": "5️⃣",
+    "6": "6️⃣",
+    "7": "7️⃣",
+    "8": "8️⃣",
+    "9": "9️⃣",
+    "0": "0️⃣",
+}
+
+
+prize_message_file_path = Path("prize_message.txt")

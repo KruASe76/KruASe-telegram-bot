@@ -10,14 +10,14 @@ from handlers import user
 from handlers import admin
 
 
-bot = Bot(token=os.environ.get("TOKEN"), efault=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
-dp = Dispatcher()
-
-logging.basicConfig(level=logging.INFO)
+TOKEN = os.getenv("TOKEN")
 
 
 async def main():
     os.makedirs("cache", exist_ok=True)
+
+    bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN_V2))
+    dp = Dispatcher()
 
     dp.include_router(user.router)
     dp.include_router(admin.router)
@@ -27,4 +27,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
